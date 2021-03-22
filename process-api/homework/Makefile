@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Wpedantic -std=$(STD) -Wno-unused-variable -Wno-unused-p
 STD= gnu11
 RM = rm -f
 
-TARGET = fork_var fork_open fork_print fork_exec fork_wait
+TARGET = fork_var fork_open fork_print fork_exec fork_wait fork_waitpid fork_close
 
 .PHONY: all clean
 
@@ -26,3 +26,9 @@ fork_exec: fork_exec.c
 
 fork_wait: fork_wait.c
 	$(CC) fork_wait fork_wait.c $(CFLAGS)
+
+fork_waitpid: fork_waitpid.c
+	$(CC) fork_waitpid fork_waitpid.c $(CFLAGS)
+
+fork_close: fork_close.c
+	$(CC) fork_close fork_close.c $(CFLAGS)
