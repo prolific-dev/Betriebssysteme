@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Wpedantic -std=$(STD) -Wno-unused-variable -Wno-unused-p
 STD = gnu11
 RM = rm -f
 
-TARGET =  syscall
+TARGET =  syscall context_switch context_switch_v1
 
 .PHONY: all clean
 
@@ -15,3 +15,8 @@ clean:
 syscall: syscall.c
 	$(CC) syscall syscall.c $(CFLAGS)
 
+context_switch: context_switch.c
+	$(CC) context_switch context_switch.c $(CFLAGS)
+
+context_switch_v1: context_switch_v1.c
+	$(CC) context_switch_v1 context_switch_v1.c $(CFLAGS)

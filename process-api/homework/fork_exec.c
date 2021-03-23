@@ -20,6 +20,16 @@ int main(int argc, char *argv[])
 		myargs[0] = strdup("/bin/ls"); // program: "wc" (word count)
 		myargs[2] = NULL; // marks end of array
 		execvp(myargs[0], myargs); // runs word count
+		/*
+		 * TODO: Parameter fixen!
+		 *
+		 * execl(myargs[0], myargs);
+		 * execlp(myargs[0], myargs);
+		 * execle(myargs[0], myargs);
+		 * execv(myargs[0], myargs);
+		 * execvp(myargs[0], myargs);
+		 * execvpe(myargs[0], myargs);
+		 */
 	}
 	else // parent goes down with this path (main)
 	{

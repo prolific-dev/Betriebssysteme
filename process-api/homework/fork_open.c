@@ -25,5 +25,11 @@ int main(int argc, char *argv[])
                 printf("hello, I am parent of %d (pid:%d)\n", rc, (int) getpid());
         }
         return 0;
+
+	/*
+	 * 1. Ja
+	 * 2. Koennen gleichzeitig darauf schreiben,
+	 *    Reihenfolge nicht determenistisch
+	 */
 }
 

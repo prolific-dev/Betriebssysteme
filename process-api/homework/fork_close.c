@@ -24,3 +24,7 @@ int main(int argc, char *argv[])
 	}
 	return 0;
 }
+
+/*
+ * Print im Kind-Prozess wird nicht mehr ausgefuehrt.
+ */

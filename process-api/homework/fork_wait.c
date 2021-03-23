@@ -23,4 +23,9 @@ int main(int argc, char* argv[])
 		printf("hello, I am parent of %d (rc_wait:%d) (pid:%d)\n", rc, rc_wait, (int) getpid());
 	}
 	return 0;
+
+	/*
+	 * Moeglicher Versuch mit SIGNAL
+ 	 * (noch nicht ausprobiert!!!)
+	 */
 }

@@ -22,4 +22,10 @@ int main(int argc, char* argv[])
 		printf("hello, I am parent of %d (rc_wait:%d) (pid:%d)\n", rc, rc_wait, (int) getpid());
 	}
 	return 0;
+
+	/*
+	 * 1. Koennte gut sein bei mehreren Kind-Prozessen um
+	 * anschliessend genau bestimmen zu koennen auf welchen
+	 * Prozess gewartet werden soll oder nicht
+	 */
 }
