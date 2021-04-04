@@ -35,7 +35,7 @@ long diff(struct timespec start, struct timespec end)
 	return temp.tv_nsec;
 }
 
-int main(int argv, int argc[])
+int main(int argv, char *argc[])
 {
 	int anzahlwerte = ROLLS - (ROLLS*ERRORROOM + ROLLS*ERRORROOM);
 	long time, nsec, err;

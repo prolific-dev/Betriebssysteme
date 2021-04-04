@@ -13,4 +13,4 @@ p3:
 	gcc -o p3 p3.c -Wall
 
 p4:
-	gcc -o p4 p4.c -Wall
+	gcc -o p4 p4.c -Wall -Wno-unused-variable
