@@ -120,8 +120,18 @@ Final statistics:
 
 ---Question4-----------------------------------------------------------
 
-
+They deliver the same turnaround time as long as jobs are in a ascending order by length.
 
 ---Question5-----------------------------------------------------------
+
+They deliver the same response time as long as job length are the same and quantum length is the same as job length.
+
 ---Question6-----------------------------------------------------------
+
+The response time will increase by the same factor as the job length increases.
+
 ---Question7-----------------------------------------------------------
+
+The response time will increase.
+
+TODO: Write equation that gives the worst-case response time, given N jobs...
