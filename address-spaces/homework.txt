@@ -1,0 +1,47 @@
+---Question 2-------------------------------------------------
+
+pwner@pwner-pc:~/Studium/Betriebssysteme/address-spaces$ free -m --si
+              gesamt      belegt       frei     gemeinsam    Zwischen   verfügbar
+Speicher:        3830         622        2139          91        1068        2888
+Auslager:        1042           0        1042
+
+
+pwner@pwner-pc:~/Studium/Betriebssysteme/address-spaces$ cat /proc/meminfo 
+MemTotal:        3830028 kB
+MemFree:         2142592 kB
+MemAvailable:    2891592 kB
+[...]
+
+---Question 3-------------------------------------------------
+
+---Question 4-------------------------------------------------
+
+killing the programm while running:
+	-malloced memory gets freed immediatly
+	-like calling free
+
+---Question 5-------------------------------------------------
+
+
+---Question 6-------------------------------------------------
+
+pmap
+	-very large heap, almost no stack
+	-large memorys
+	-many same sized cunks of allocated memorey
+
+---Question 7-------------------------------------------------
+
+how many different entities make up a modern address space
+	-memory-user -> c-code
+	-heap
+	-lib -> librarys
+	-ld -> link loader
+	-stack
+	-anon -> anonymus user memory
+
+---Question 8-------------------------------------------------
+
+pmap on memory user
+	-one large chunk of memory in heap
+	-small stack

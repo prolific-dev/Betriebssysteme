@@ -1,0 +1,128 @@
+1.
+
+pwner@pwner-pc:~/Studium/Betriebssysteme/address-translation$ python relocation.py -s 1 -c
+
+ARG seed 1
+ARG address space size 1k
+ARG phys mem size 16k
+
+Base-and-Bounds register information:
+
+  Base   : 0x0000363c (decimal 13884)
+  Limit  : 290
+
+Virtual Address Trace
+  VA  0: 0x0000030e (decimal:  782) --> SEGMENTATION VIOLATION
+  VA  1: 0x00000105 (decimal:  261) --> VALID: 0x00003741 (decimal: 14145)
+  VA  2: 0x000001fb (decimal:  507) --> SEGMENTATION VIOLATION
+  VA  3: 0x000001cc (decimal:  460) --> SEGMENTATION VIOLATION
+  VA  4: 0x0000029b (decimal:  667) --> SEGMENTATION VIOLATION
+
+pwner@pwner-pc:~/Studium/Betriebssysteme/address-translation$ python relocation.py -s 2 -c
+
+ARG seed 2
+ARG address space size 1k
+ARG phys mem size 16k
+
+Base-and-Bounds register information:
+
+  Base   : 0x00003ca9 (decimal 15529)
+  Limit  : 500
+
+Virtual Address Trace
+  VA  0: 0x00000039 (decimal:   57) --> VALID: 0x00003ce2 (decimal: 15586)
+  VA  1: 0x00000056 (decimal:   86) --> VALID: 0x00003cff (decimal: 15615)
+  VA  2: 0x00000357 (decimal:  855) --> SEGMENTATION VIOLATION
+  VA  3: 0x000002f1 (decimal:  753) --> SEGMENTATION VIOLATION
+  VA  4: 0x000002ad (decimal:  685) --> SEGMENTATION VIOLATION
+
+
+pwner@pwner-pc:~/Studium/Betriebssysteme/address-translation$ python relocation.py -s 3 -c
+
+ARG seed 3
+ARG address space size 1k
+ARG phys mem size 16k
+
+Base-and-Bounds register information:
+
+  Base   : 0x000022d4 (decimal 8916)
+  Limit  : 316
+
+Virtual Address Trace
+  VA  0: 0x0000017a (decimal:  378) --> SEGMENTATION VIOLATION
+  VA  1: 0x0000026a (decimal:  618) --> SEGMENTATION VIOLATION
+  VA  2: 0x00000280 (decimal:  640) --> SEGMENTATION VIOLATION
+  VA  3: 0x00000043 (decimal:   67) --> VALID: 0x00002317 (decimal: 8983)
+
+
+
+
+
+
+
+2.
+
+
+
+pwner@pwner-pc:~/Studium/Betriebssysteme/address-translation$ python relocation.py -s 0 -n 10
+
+ARG seed 0
+ARG address space size 1k
+ARG phys mem size 16k
+
+Base-and-Bounds register information:
+
+  Base   : 0x00003082 (decimal 12418)
+  Limit  : 472
+
+Virtual Address Trace
+  VA  0: 0x000001ae (decimal:  430) --> PA or segmentation violation?
+  VA  1: 0x00000109 (decimal:  265) --> PA or segmentation violation?
+  VA  2: 0x0000020b (decimal:  523) --> PA or segmentation violation?
+  VA  3: 0x0000019e (decimal:  414) --> PA or segmentation violation?
+  VA  4: 0x00000322 (decimal:  802) --> PA or segmentation violation?
+  VA  5: 0x00000136 (decimal:  310) --> PA or segmentation violation?
+  VA  6: 0x000001e8 (decimal:  488) --> PA or segmentation violation?
+  VA  7: 0x00000255 (decimal:  597) --> PA or segmentation violation?
+  VA  8: 0x000003a1 (decimal:  929) --> PA or segmentation violation?
+  VA  9: 0x00000204 (decimal:  516) --> PA or segmentation violation?
+
+For each virtual address, either write down the physical address it translates to
+OR write down that it is an out-of-bounds address (a segmentation violation). 
+
+
+
+
+
+
+
+
+
+
+
+
+3. Virtual bound must be smaller than physical bound (? minus address space for OS?)
+
+
+4.
+
+pwner@pwner-pc:~/Studium/Betriebssysteme/address-translation$ python relocation.py -p 32k -a 24k -c
+
+ARG seed 0
+ARG address space size 24k
+ARG phys mem size 32k
+
+Base-and-Bounds register information:
+
+  Base   : 0x000035d5 (decimal 13781)
+  Limit  : 11332
+
+Virtual Address Trace
+  VA  0: 0x000018db (decimal: 6363) --> VALID: 0x00004eb0 (decimal: 20144)
+  VA  1: 0x00003115 (decimal: 12565) --> SEGMENTATION VIOLATION
+  VA  2: 0x000026df (decimal: 9951) --> VALID: 0x00005cb4 (decimal: 23732)
+  VA  3: 0x00004b3e (decimal: 19262) --> SEGMENTATION VIOLATION
+  VA  4: 0x00001d1e (decimal: 7454) --> VALID: 0x000052f3 (decimal: 21235)
+
+
+
