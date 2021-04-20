@@ -1,0 +1,99 @@
+---1----------------------------------------------------------------------------------------
+
+Address Space increases as the Page-table size does. (page-table = addressSpace / pageSize)
+
+---2----------------------------------------------------------------------------------------
+
+pwner@pwner-pc:~/Studium/Betriebssysteme/paging-intro$ python paging-linear-translate.py -P 1k -a 16k -p 32k -v -u 0 -c
+ARG seed 0
+ARG address space size 16k
+ARG phys mem size 32k
+ARG page size 1k
+ARG verbose True
+ARG addresses -1
+
+
+The format of the page table is simple:
+The high-order (left-most) bit is the VALID bit.
+  If the bit is 1, the rest of the entry is the PFN.
+  If the bit is 0, the page is not valid.
+Use verbose mode (-v) if you want to print the VPN # by
+each entry of the page table.
+
+Page Table (from entry 0 down to the max size)
+  [       0]  0x00000000
+  [       1]  0x00000000
+  [       2]  0x00000000
+  [       3]  0x00000000
+  [       4]  0x00000000
+  [       5]  0x00000000
+  [       6]  0x00000000
+  [       7]  0x00000000
+  [       8]  0x00000000
+  [       9]  0x00000000
+  [      10]  0x00000000
+  [      11]  0x00000000
+  [      12]  0x00000000
+  [      13]  0x00000000
+  [      14]  0x00000000
+  [      15]  0x00000000
+
+Virtual Address Trace
+  VA 0x00003a39 (decimal:    14905) -->  Invalid (VPN 14 not valid)
+  VA 0x00003ee5 (decimal:    16101) -->  Invalid (VPN 15 not valid)
+  VA 0x000033da (decimal:    13274) -->  Invalid (VPN 12 not valid)
+  VA 0x000039bd (decimal:    14781) -->  Invalid (VPN 14 not valid)
+  VA 0x000013d9 (decimal:     5081) -->  Invalid (VPN 4 not valid)
+
+
+
+pwner@pwner-pc:~/Studium/Betriebssysteme/paging-intro$ python paging-linear-translate.py -P 1k -a 16k -p 32k -v -u 25 -c
+ARG seed 0
+ARG address space size 16k
+ARG phys mem size 32k
+ARG page size 1k
+ARG verbose True
+ARG addresses -1
+
+
+The format of the page table is simple:
+The high-order (left-most) bit is the VALID bit.
+  If the bit is 1, the rest of the entry is the PFN.
+  If the bit is 0, the page is not valid.
+Use verbose mode (-v) if you want to print the VPN # by
+each entry of the page table.
+
+Page Table (from entry 0 down to the max size)
+  [       0]  0x80000018
+  [       1]  0x00000000
+  [       2]  0x00000000
+  [       3]  0x00000000
+  [       4]  0x00000000
+  [       5]  0x80000009
+  [       6]  0x00000000
+  [       7]  0x00000000
+  [       8]  0x80000010
+  [       9]  0x00000000
+  [      10]  0x80000013
+  [      11]  0x00000000
+  [      12]  0x8000001f
+  [      13]  0x8000001c
+  [      14]  0x00000000
+  [      15]  0x00000000
+
+Virtual Address Trace
+  VA 0x00003986 (decimal:    14726) -->  Invalid (VPN 14 not valid)
+  VA 0x00002bc6 (decimal:    11206) --> 00004fc6 (decimal    20422) [VPN 10]
+  VA 0x00001e37 (decimal:     7735) -->  Invalid (VPN 7 not valid)
+  VA 0x00000671 (decimal:     1649) -->  Invalid (VPN 1 not valid)
+  VA 0x00001bc9 (decimal:     7113) -->  Invalid (VPN 6 not valid)
+
+
+
+
+
+---3-----------------------------------------------------------------------------
+
+1. Small Parameters (Byte)
+2. Small VA compared to PA (unrealistic). Pagesize realistic
+3. Pagesize too big
