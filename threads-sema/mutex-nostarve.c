@@ -25,7 +25,7 @@ void ns_mutex_init(ns_mutex_t *m) {
   m->room1 = 0;
   m->room2 = 0;
   sem_init(&m->t1, 0, 1);
-  sem_init(&m->t2, 0, 0);
+  sem_init(&m->t2, 0, 1);
   sem_init(&m->mutex, 0, 1);
 }
 
@@ -39,6 +39,9 @@ void ns_mutex_acquire(ns_mutex_t *m) {
   sem_wait(&m->mutex);
   m->room1--;
   if (m->room1 == 0) {
+    sem_post(&m->mutex);
+    sem_post(&m->t2);
+  } else {
     sem_post(&m->mutex);
     sem_post(&m->t1);
   }
