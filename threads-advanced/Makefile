@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Wno-unused-variable -Wno-implicit-function-declaration -Wno-pointer-sign
+CFLAGS = -Wall -Wno-unused-variable -Wno-implicit-function-declaration -Wno-pointer-sign -Wno-maybe-uninitialized -lrt
 
 all: tcp_server tcp_client tcp_server_select tcp_client_select tcp_server_file tcp_client_file tcp_server_async tcp_client_async
 

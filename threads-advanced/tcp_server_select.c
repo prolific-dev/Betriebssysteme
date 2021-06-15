@@ -111,6 +111,9 @@ int main()
       if (rc == -1) {
         printf("select error\n");
         exit(0);
+      } else if (rc == 0) {
+        printf("select timeout\n");
+        exit(0);
       }
 
       // check if we have data with fd_isset / fd set loop

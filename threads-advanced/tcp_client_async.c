@@ -18,7 +18,7 @@ int main() {
         printf("socket reation failed\n");
         exit(0);
     } else {
-        printf("ocket successfully created\n");
+        printf("socket successfully created\n");
     }
 
     //servaddr initialisieren

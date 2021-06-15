@@ -13,7 +13,7 @@
 #include <aio.h> //Aiocb
 
 #define MAX 80
-#define BUFFSIZE 1024
+#define BUFFSIZE 80
 #define PORT 8080
 #define SA struct sockaddr
 
@@ -94,7 +94,7 @@ int main() {
     cli_size = sizeof(struct sockaddr_in);
 
     //infinte loop
-    while(1){
+    for(;;) {
         rfds = afds;
 
         // select befehl
@@ -103,7 +103,6 @@ int main() {
             exit(0);
         }
 
-        printf("yo\n");
         //check if we have data with fd_isset / fd set loop
         for (int i = 0; i < FD_SETSIZE; i++) {
 
@@ -164,10 +163,10 @@ int main() {
                     ios[waitingReqs].aiocbp->aio_reqprio = 0;
 
                     //call asynchron read
-                    //if (aio_read(ios[waitingReqs].aiocbp) == -1) {
-                    //    printf("error read\n");
-                    //    exit(0);
-                    //}
+                    if (aio_read(ios[waitingReqs].aiocbp) == -1) {
+                       printf("error read\n");
+                       exit(0);
+                    }
 
 
 
@@ -188,21 +187,21 @@ int main() {
                     //call error to check if ready
                     ios[i].status = aio_error(ios[i].aiocbp);
                     if (ios[i].status == 0) {
-
-                        //IO is finished, send back to client
-                        if (send(ios[i].cfd, (char *) ios[i].aiocbp->aio_buf, BUFFSIZE, 0) == -1) {
-                            printf("sending error\n");
-                        } else {
-                            printf("sent file to client\n");
-                        }
-                        close(ios[i].aiocbp->aio_fildes);
-                        close(ios[i].cfd);
-                        FD_CLR(ios[i].cfd, &afds);
+                      //IO is finished, send back to client
+                      if (send(ios[i].cfd, (char *) ios[i].aiocbp->aio_buf, BUFFSIZE, 0) == -1) {
+                          printf("sending error\n");
+                      } else {
+                          printf("sent file to client\n");
+                      }
+                      close(ios[i].aiocbp->aio_fildes);
+                      close(ios[i].cfd);
+                      FD_CLR(ios[i].cfd, &afds);
                     }
-                    if (ios[i].status != EINPROGRESS)
+                    if (ios[i].status != EINPROGRESS) {
                         //delete one openReq, because its done
                         printf("reduce openReqs\n");
                         openReqs--;
+                    }
                 }
             }
         }
