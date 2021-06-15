@@ -10,7 +10,7 @@
 #include <unistd.h>
 
 #define MAX 80
-#define PORT 8080
+#define PORT 8081
 #define SA struct sockaddr
 
 
@@ -60,17 +60,7 @@ int main()
     {
         printf("Server listening..\n");
     }
-    len = sizeof(cli);
 
-
-    // Accept the data packet from client and verification
-   connfd = accept(sockfd, (SA*)&cli, &len);
-   if (connfd < 0) {
-       printf("server acccept failed...\n");
-       exit(0);
-   }
-   else
-       printf("server acccept the client...\n");
 
   int fd;
   int minFD = 0;
@@ -107,6 +97,8 @@ int main()
 
   //infinite loop for chat
   for (;;) {
+    rfds = afds;
+
       // if (select(FD_SETSIZE+1, &rfds, NULL, NULL, NULL) == -1)
       // {
       //   printf("select error\n");
@@ -115,6 +107,11 @@ int main()
 
 
       int rc = select(FD_SETSIZE+1, &rfds, NULL, NULL, NULL);
+
+      if (rc == -1) {
+        printf("select error\n");
+        exit(0);
+      }
 
       // check if we have data with fd_isset / fd set loop
       for(int i = 0; i < FD_SETSIZE; i++)
@@ -126,7 +123,7 @@ int main()
             int cfd;
 
             // Accept the data packet from client and verification
-            cfd = accept(sockfd, (SA*)&cli, &len);
+            connfd = accept(sockfd, (SA*)&cli, &len);
             if (connfd < 0)
             {
               printf("server accepting failed\n");
@@ -136,6 +133,7 @@ int main()
             {
               printf("server accepting client\n");
             }
+            cfd = connfd;
             FD_SET(cfd, &afds);
           }
           else
@@ -143,13 +141,9 @@ int main()
             bzero(buff, MAX);
 
             // read the message from client and copy it in buffer
-            read(sockfd, buff, sizeof(buff));
+            read(i, buff, sizeof(buff));
             // print buffer which contains the client contents
             printf("From client: %s\t To client : ", buff);
-            bzero(buff, MAX);
-            n = 0;
-            // copy server message in the buffer
-            while ((buff[n++] = getchar()) != '\n');
 
             // and send that buffer to client
             write(sockfd, buff, sizeof(buff));
