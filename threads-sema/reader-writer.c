@@ -25,19 +25,18 @@ void rwlock_init(rwlock_t *rw) {
 }
 
 void rwlock_acquire_readlock(rwlock_t *rw) {
-  sleep(2);
+
   sem_wait(&rw->lock);
   rw->readers++;
   if (rw->readers == 1)
   {
-    sleep(2);
+
     sem_wait(&rw->writelock);
   }
   sem_post(&rw->lock);
 }
 
 void rwlock_release_readlock(rwlock_t *rw) {
-  sleep(2);
   sem_wait(&rw->lock);
   rw->readers--;
   if (rw->readers == 0)
@@ -48,7 +47,6 @@ void rwlock_release_readlock(rwlock_t *rw) {
 }
 
 void rwlock_acquire_writelock(rwlock_t *rw) {
-  sleep(2);
   sem_wait(&rw->writelock);
 }
 
