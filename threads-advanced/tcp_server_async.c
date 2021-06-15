@@ -13,7 +13,7 @@
 #include <aio.h> //Aiocb
 
 #define MAX 80
-#define BUFFSIZE 80
+#define BUFFSIZE 1024
 #define PORT 8080
 #define SA struct sockaddr
 
